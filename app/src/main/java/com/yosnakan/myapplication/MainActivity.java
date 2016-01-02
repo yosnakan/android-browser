@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +19,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //レイアウトで指定したWebViewのIDを指定する。
+        WebView  myWebView = (WebView)findViewById(R.id.webView);
+        //リンクをタップしたときに標準ブラウザを起動させない
+        myWebView.setWebViewClient(new WebViewClient());
+        //最初にYahoo! Japanのページを表示する。
+        myWebView.loadUrl("http://www.yahoo.co.jp/");
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
