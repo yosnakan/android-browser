@@ -10,8 +10,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
+
+    //webview
+    WebView  myWebView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,11 +25,23 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //レイアウトで指定したWebViewのIDを指定する。
-        WebView  myWebView = (WebView)findViewById(R.id.webView);
+        myWebView = (WebView)findViewById(R.id.webView);
         //リンクをタップしたときに標準ブラウザを起動させない
         myWebView.setWebViewClient(new WebViewClient());
         //最初にYahoo! Japanのページを表示する。
         myWebView.loadUrl("http://www.yahoo.co.jp/");
+
+        // クリックイベントを取得したいボタン
+        Button button = (Button) findViewById(R.id.button);
+
+        // ボタンに OnClickListener インターフェースを実装する
+        button.setOnClickListener(new View.OnClickListener() {
+            // クリック時に呼ばれるメソッド
+            @Override
+            public void onClick(View view) {
+                myWebView.loadUrl("https://www.google.co.jp/");
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
