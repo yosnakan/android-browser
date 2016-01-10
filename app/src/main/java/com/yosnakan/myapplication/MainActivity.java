@@ -58,9 +58,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if ( Settings.canDrawOverlays(this) ) {
+        if ( checkDrawOverlays() ) {
             startService(new Intent(MainActivity.this, SearchService.class));
         }
+    }
+
+    public boolean checkDrawOverlays(){
+        if (Build.VERSION.SDK_INT < 23) {
+            return true;
+        }
+        return Settings.canDrawOverlays(this);
     }
 
     @Override
