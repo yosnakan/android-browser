@@ -3,6 +3,7 @@ package com.yosnakan.myapplication;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -18,6 +19,8 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static int ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE= 4649;
 
     //webview
     WebView  myWebView;
@@ -60,7 +63,13 @@ public class MainActivity extends AppCompatActivity {
 
         if ( checkDrawOverlays() ) {
             startService(new Intent(MainActivity.this, SearchService.class));
+        } else {
+            requestOverlays();
         }
+    }
+    public void requestOverlays() {
+        Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse( "package:" + getPackageName() ));
+        this.startActivityForResult(intent, ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE);
     }
 
     public boolean checkDrawOverlays(){
