@@ -8,6 +8,8 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
@@ -32,9 +34,16 @@ public class SearchService extends Service{
                 WindowManager.LayoutParams.TYPE_SYSTEM_ALERT,
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                 PixelFormat.TRANSLUCENT);
+        LinearLayout searchLayout = new LinearLayout(this);
+
         TextView textView = new TextView(this);
         textView.setText("Hello World!!");
+        searchLayout.addView(textView);
 
-        mWindowManager.addView(textView, mparams);
+        Button button1 = new Button(this);
+        button1.setText("検索");
+        searchLayout.addView(button1);
+
+        mWindowManager.addView(searchLayout, mparams);
     }
 }
