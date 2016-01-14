@@ -40,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
         //最初にYahoo! Japanのページを表示する。
         myWebView.loadUrl("http://www.yahoo.co.jp/");
 
+        //JavaScriptを有効にする。
+        myWebView.getSettings().setJavaScriptEnabled(true);
+
+
         // クリックイベントを取得したいボタン
         Button button = (Button) findViewById(R.id.button);
 
